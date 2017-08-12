@@ -1,0 +1,2 @@
+class Muun < ApplicationRecord
+end
