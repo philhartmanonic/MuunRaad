@@ -21,20 +21,25 @@
 			<hl>
 			<p><%= @muun.lunar_description %></p>
 		</div>
-		<div class="column">
-			<div class="row">
-				<p><strong>Find your own muun</strong></p>
+		<div class="col-3">
+			<div class="col-1">
 			</div>
-			<div class="row">
-				<p>Enter your birthday:</p>
+			<div class="col-10">
+				<div class="row">
+					<p><strong>Find your own muun</strong></p>
+				</div>
+				<div class="row">
+					<p>Enter your birthday:</p>
+				</div>
+				<div class="row">
+					<%= form_tag(controller: "muuns", action: "date") do %>
+						<%= select_tag(:month, options_for_select([['January', '01'], ['February', '02'], ['March', '03'], ['April', '04'], ['May', '05'], ['June', '06'], ['July', '07'], ['August', '08'], ['September', '09'], ['October', '10'], ['November', '11'], ['December', '12']])) %>
+						<%= select_tag(:day, options_for_select((1..31).to_a)) %>
+						<%= select_tag(:year, options_for_select((1900..Date.today.year.to_i).to_a.reverse)) %>
+						<%= submit_tag("FIND MY MUUN!") %>
+					<% end %>
+				</div>
 			</div>
-			<div class="row">
-				<%= form_tag(controller: "muuns", action: "date") do %>
-					<%= select_tag(:month, options_for_select([['January', '01'], ['February', '02'], ['March', '03'], ['April', '04'], ['May', '05'], ['June', '06'], ['July', '07'], ['August', '08'], ['September', '09'], ['October', '10'], ['November', '11'], ['December', '12']])) %>
-					<%= select_tag(:day, options_for_select((1..31).to_a)) %>
-					<%= select_tag(:year, options_for_select((1900..Date.today.year.to_i).to_a)) %>
-					<%= submit_tag("FIND MY MUUN!") %>
-				<% end %>
-			</div>
+		</div>
 	</div>
 </div>
