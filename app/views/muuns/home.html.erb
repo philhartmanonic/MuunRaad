@@ -1,19 +1,40 @@
 <div class="container">
 	<div class="row">
-		<div class="col-6">
+		<div class="col-9">
 			<div class="row">
 				<strong>The Muunraad</strong>
+			</div>
+			<div class="row">
 				<p>The Muunraad is similar to the better known Greek astrological system (Libra, Virgo, Leo, etc.) from pre-christian heathen Germany.  There are several things that differentiate the Muunraad - while the personalities described have similarities, the Muunraad draws heavily on the wheel of the year and the cycle of harvest (birth in Spring, growing into adulthood in the autumn, and fading into the next world with the Wild Hunt of the winter).</p>
 				<p>Perhaps the trickiest thing for people used to the established 12 month calendar is the Muunraad stems from a time before Germany adopted a consistent, 365 day calendar.  Before this, Germany (and heathen peoples throughout Europe) used a lunar calendar, where each new year began with the first new moon after the Spring Equinox (March 21st), and your "moon" (sign) stems from the number of new moons in the current year.</p>
 				<p>As that's tricky to piece together on your own, I put this together to help you figure things out</p>
 			</div>
 			<div class="row">
-				<strong>The Current Moon: <%= @muun.german_name %> (<%= @muun.english_name %>)</strong>
-				<p>
-					<div class="column">Moon Number: <%= @moon.number ></div>|<div class="column">Start Date: <i><%= @moon.moon_date %></i></div>|<div class="column">Full Moon: <i>#{@moon.full_moon_date}</i></div>|<div class="column">End Date: <i><%= @moon.last_date %></i></div>
-				</p>
-				<p><%= @muun.lunar_description %></p>
+				<p><strong>The Current Moon: <%= @muun.german_name %> (<%= @muun.english_name %>)</strong></p>
 			</div>
+			<div class="row">
+				<p>
+					Moon Number: <%= @moon[:moon_number] %>     |     Start Date: <i><%= @moon[:moon_date].strftime('%m/%d/%Y') %></i>
+				</p>
+				<img src=<%= @muun.picture_url %> width=75% height=75%>
+			</div>
+			<hl>
+			<p><%= @muun.lunar_description %></p>
 		</div>
+		<div class="column">
+			<div class="row">
+				<p><strong>Find your own muun</strong></p>
+			</div>
+			<div class="row">
+				<p>Enter your birthday:</p>
+			</div>
+			<div class="row">
+				<%= form_tag(controller: "muuns", action: "date") do %>
+					<%= select_tag(:month, options_for_select([['January', '01'], ['February', '02'], ['March', '03'], ['April', '04'], ['May', '05'], ['June', '06'], ['July', '07'], ['August', '08'], ['September', '09'], ['October', '10'], ['November', '11'], ['December', '12']])) %>
+					<%= select_tag(:day, options_for_select((1..31).to_a)) %>
+					<%= select_tag(:year, options_for_select((1900..Date.today.year.to_i).to_a)) %>
+					<%= submit_tag("FIND MY MUUN!") %>
+				<% end %>
+			</div>
 	</div>
 </div>

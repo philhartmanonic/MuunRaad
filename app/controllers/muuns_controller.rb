@@ -8,11 +8,13 @@ class MuunsController < ApplicationController
 	end
 
 	def home
-		@moon = FullMoon.moon_for_date(Date.today)
-		@muun = Muun.where(lunar_number: FullMoon.muun_for_date(Date.today)).first
+		@moon = Muun.moon_for_date(Date.today.strftime('%m/%d/%Y'))
+		@muun = Muun.muun_for_date(Date.today.strftime('%m/%d/%Y'))
 	end
 
 	def date
-		@munn = Munn.where(lunar_number: FullMoon.muun_for_date(Date.strptime(params[:date], '%m/%d/%Y'))).first
+		date = "#{params[:month]}/#{params[:day]}/#{params[:year]}"
+		@moon = Muun.moon_for_date(date)
+		@muun = Muun.muun_for_date(date)
 	end
 end

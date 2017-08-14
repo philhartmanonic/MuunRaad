@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="row">
+		<center>
+			<h2><%= @muun.german_name %> (<%= @muun.english_name %>)</h2>
+		</center>
+	</div>
+	<div class="row">
+		<p>
+			Moon Number: <%= @moon[:moon_number] %>     |     Start Date: <i><%= @moon[:moon_date].strftime('%m/%d/%Y') %></i>
+		</p>
+	</div>
+	<hr>
+	<div class="row">
+		<center><img src=<%= @muun.picture_url %> width=75% height=100%></center>
+	</div>
+	<hr>
+	<div class="row">
+		<p>
+			<%= @muun.personal_description %>
+		</p>
+	</div>
+</div>
